@@ -1,0 +1,19 @@
+.content{
+
+    border-radius: 10px;
+    border: 2px solid green;
+    transition: .3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    color: green;
+    font-weight: bold;
+    font-size: 2rem;
+
+
+}
+
+.content:hover{
+    opacity: 0.8;
+
+}

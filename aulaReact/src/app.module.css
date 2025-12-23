@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    gap: 1.5rem;
+    padding: 10px;
+    background-color: #121213;
+    width: 100dvw;
+    height: 100dvh;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.container > span {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 400;
+}
