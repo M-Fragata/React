@@ -4,7 +4,7 @@
     padding: 10px;
     background-color: #121213;
     width: 100dvw;
-    height: 100dvh;
+    height: 50dvh;
 
     justify-content: center;
     align-items: center;
@@ -14,4 +14,22 @@
     color: #fff;
     font-size: 3rem;
     font-weight: 400;
+}
+
+section{
+    padding: 10px;
+}
+
+.form{
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    border: 1px solid black;
+}
+.formInfo{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-between;
 }
