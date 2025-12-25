@@ -2,7 +2,10 @@ import { Header } from './components/Header/header.tsx'
 import { Tip } from './components/Tip/tip.tsx'
 import { Letter } from './components/Letter/letter.tsx'
 import { Palpite } from './components/Palpite/palpite.tsx'
+import { LettersUsed } from './components/LettersUsed/letterUsed.tsx'
+
 import styles from "./App.module.css"
+
 
 export function App() {
 
@@ -26,6 +29,8 @@ export function App() {
         </aside>
         
         <Palpite />
+
+        <LettersUsed />
 
       </main>
 
