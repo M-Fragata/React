@@ -1,0 +1,11 @@
+button {
+    width: 6rem;
+    height: 3.37rem;
+
+    background-color: #6363db;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0.62rem;
+    border: 2px solid #4f4fb9;
+}
