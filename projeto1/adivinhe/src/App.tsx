@@ -21,11 +21,11 @@ export function App() {
         <Tip tip= "Uma das linguagens de programção mais utilizadas" />
 
         <aside className={styles.word}>
-          <Letter value="r" />
-          <Letter value="e" />
-          <Letter value="a" />
-          <Letter value="c" />
-          <Letter value="t" />
+          <Letter value="" />
+          <Letter value="" />
+          <Letter value="" />
+          <Letter value="" />
+          <Letter value="" />
         </aside>
         
         <Palpite />
