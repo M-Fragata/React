@@ -6,6 +6,6 @@ import styles from "./Button.module.css"
 
 export function Button({title, ...button}: ButtonProps) {
     return (
-        <button {...button}>{title}</button>
+        <button className={styles.button} {...button}>{title}</button>
     )
 }
