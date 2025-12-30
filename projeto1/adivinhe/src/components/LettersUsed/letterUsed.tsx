@@ -2,8 +2,8 @@ import styles from './letterUsed.module.css'
 import { Letter } from '../Letter/letter.tsx'
 
 export type lettersUsedProps = {
-    value: string,
-    correct: boolean
+    value: string
+    correct?: boolean
 }
 
 type Props = {

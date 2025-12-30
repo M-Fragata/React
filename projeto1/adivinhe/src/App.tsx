@@ -1,3 +1,7 @@
+/**
+ * Adicionar funcionadade de poder pular palavra
+ * Adicionar funcionalidade de salvar pontuação máxima
+ */
 import styles from "./App.module.css"
 import { useEffect, useState } from "react"
 
@@ -20,19 +24,18 @@ export function App() {
   const [letter, setLetter] = useState("")
   const [challenge, setChallenge] = useState<Challenge | null>(null)
   const [lettersUsed, setLetterUsed] = useState<lettersUsedProps[]>([])
-
   const [showConfig, setShowConfig] = useState(false)
 
   function handleRestartGame() {
-    alert("Reiniciando o jogo!")
+    const isConfirmed = confirm("Deseja reiniciar o jogo?")
+
+    if (!isConfirmed) {
+      return
+    }
     startGame()
   }
 
   function startGame() {
-
-    if (attempts >= remainingAttempts) {
-      alert("Game it's over")
-    }
 
     const index = Math.floor(Math.random() * WORDS.length)
     const randomWord = WORDS[index]
@@ -75,11 +78,34 @@ export function App() {
     if (!correct) {
       setAttempts(attempts + 1)
     }
+
+
     setScore(score + hits)
     setLetter("")
   }
 
-  useEffect(() => { startGame() }, [attempts >= remainingAttempts])
+  function endGame(message: string) {
+    alert(message)
+    startGame()
+  }
+
+  useEffect(() => { startGame() }, [])
+
+  useEffect(() => {
+    if (!challenge) {
+      return
+    }
+
+    setTimeout(() => {
+      if (score === challenge.word.length) {
+        return endGame(`Você ganhou! A palavra era "${challenge.word}"`)
+      }
+
+      if( attempts === remainingAttempts ) {
+        return endGame("Que pena, você perdeu!")
+      }
+    }, 200)
+  }, [attempts, lettersUsed.length])
 
   if (!challenge) {
     return
@@ -101,11 +127,8 @@ export function App() {
         </section>
       )}
 
-
-
-
       <main>
-        <Header current={attempts} max={remainingAttempts} onRestart={handleRestartGame} config={handleConfig}/>
+        <Header current={attempts} max={remainingAttempts} onRestart={handleRestartGame} config={handleConfig} />
 
         <Tip tip={challenge.tip} />
 
@@ -114,8 +137,7 @@ export function App() {
             challenge.word.split("").map((letter, index) => {
 
               const letterUsed = lettersUsed.find((used) => used.value.toUpperCase() === letter.toUpperCase())
-
-              return <Letter key={index} value={letterUsed?.value} />
+              return <Letter key={index} value={letterUsed?.value} color={letterUsed?.correct ? "right" : "default"} />
             })
           }
 
