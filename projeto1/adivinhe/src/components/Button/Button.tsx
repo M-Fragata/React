@@ -1,5 +1,5 @@
 type ButtonProps = React.ComponentProps<"button"> | {
-    title: string
+    title?: string
 }
 
 import styles from "./Button.module.css"

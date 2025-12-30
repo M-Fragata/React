@@ -16,9 +16,10 @@
     padding: 3.25rem 0;
 }
 
-.container > section > button {
+.container > section  button {
     background-color: transparent;
     border: none;
+    width: 60px;
 }
 
 .container > section img{

@@ -10,23 +10,36 @@ import { LettersUsed } from './components/LettersUsed/letterUsed.tsx'
 import { WORDS } from './utils/words.ts'
 import type { Challenge } from './utils/words.ts'
 import type { lettersUsedProps } from './components/LettersUsed/letterUsed.tsx'
+import close from "./assets/close.png"
+
 export function App() {
 
   const [score, setScore] = useState(0)
   const [attempts, setAttempts] = useState(0)
+  const [remainingAttempts, setRemainingAttempts] = useState(1)
   const [letter, setLetter] = useState("")
   const [challenge, setChallenge] = useState<Challenge | null>(null)
   const [lettersUsed, setLetterUsed] = useState<lettersUsedProps[]>([])
 
+  const [showConfig, setShowConfig] = useState(false)
+
   function handleRestartGame() {
-    alert("Reiniciar o jogo!")
+    alert("Reiniciando o jogo!")
+    startGame()
   }
 
   function startGame() {
+
+    if (attempts >= remainingAttempts) {
+      alert("Game it's over")
+    }
+
     const index = Math.floor(Math.random() * WORDS.length)
     const randomWord = WORDS[index]
+    const remaining = Number((randomWord.word.length / 2).toFixed(0))
 
     setChallenge(randomWord)
+    setRemainingAttempts(remaining)
     setAttempts(0)
     setScore(0)
     setLetter("")
@@ -38,7 +51,10 @@ export function App() {
       return
     }
 
-    if (!letter.trim()) {
+    const isString = /^[a-zA-Z]+$/
+
+    if (!letter.trim() || !isString.test(letter)) {
+      setLetter("")
       return alert("Digite uma letra!")
     }
 
@@ -63,16 +79,33 @@ export function App() {
     setLetter("")
   }
 
-  useEffect(() => { startGame() }, [])
+  useEffect(() => { startGame() }, [attempts >= remainingAttempts])
 
   if (!challenge) {
     return
   }
 
+  function handleConfig() {
+    setShowConfig(true)
+  }
+
   return (
     <div className={styles.container}>
+      {showConfig && (
+        <section className={styles.gameConfig}>
+          <button className={styles.closeButton} onClick={() => setShowConfig(false)}> <img src={close} alt="fechar opções" /></button>
+          <div>
+            <button> Novo Jogo </button>
+            <button> Carregar palavra </button>
+          </div>
+        </section>
+      )}
+
+
+
+
       <main>
-        <Header current={attempts} max={10} onRestart={handleRestartGame} />
+        <Header current={attempts} max={remainingAttempts} onRestart={handleRestartGame} config={handleConfig}/>
 
         <Tip tip={challenge.tip} />
 
@@ -82,15 +115,13 @@ export function App() {
 
               const letterUsed = lettersUsed.find((used) => used.value.toUpperCase() === letter.toUpperCase())
 
-              console.log(letterUsed)
-
               return <Letter key={index} value={letterUsed?.value} />
             })
           }
 
         </aside>
 
-        <h4>Palpite</h4>
+        <h4>Palpite:</h4>
 
         <section className={styles.guess}>
           <Input value={letter} onChange={(e) => setLetter(e.target.value)} />
