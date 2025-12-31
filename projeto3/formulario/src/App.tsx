@@ -1,12 +1,27 @@
 import "./App.css"
 
+import { useState, useEffect } from "react"
+
+
+
 export default function App() {
+
+  const [name, setName] = useState<string>("")
+
+  useEffect(() => {console.log(name)}, [name])
+
   return (
     <div>
       <h1>Evento</h1>
 
       <form>
-        <input type="text" placeholder="Nome do evento" />
+        <input type="text" placeholder="Nome do evento" onChange={(event) => {
+          const chunks = [...event.target.value]
+
+          const word = chunks.join("").toUpperCase()
+
+          setName(word)
+        }} />
         <span className="error">Nome é obrigatório</span>
 
         <input type="date" placeholder="Nome do evento" lang="pt-BR" />
