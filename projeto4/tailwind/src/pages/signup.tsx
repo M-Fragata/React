@@ -12,8 +12,12 @@ export function SignUp() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     function onSubmit(event: React.FormEvent) {
+        setIsLoading(true)
         event.preventDefault()
-        alert(`${name}, ${email}, ${password}, ${passwordConfirm}`)
+        setTimeout(() => {
+            alert(`${name}, ${email}, ${password}, ${passwordConfirm}`)
+        }, 1000)
+        setIsLoading(false)
     }
 
     return (

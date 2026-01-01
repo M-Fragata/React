@@ -6,6 +6,7 @@ import { EmployeeRoutes } from "./EmployeeRoutes.tsx";
 export function Routes() {
     return (
         <BrowserRouter>
+            <AuthRoutes />
             <EmployeeRoutes/>
         </BrowserRouter>
     )
