@@ -1,16 +1,21 @@
 import { Routes, Route } from "react-router"
 
-import { Refund } from "../components/Refund.tsx"
+import { Refund } from "../pages/Refund.tsx"
 import { NotFound } from "../pages/NotFound.tsx"
+import { AppLayout } from "../components/AppLayout.tsx"
+import { Confirm } from "../pages/Confirm.tsx"
 
 export function EmployeeRoutes() {
     return (
         <Routes>
-            <Route>
-                <Route path="/refund" element={<Refund />} />
+
+            <Route path="/" element={<AppLayout />}>
+                <Route path="/" element={<Refund />} />
+                <Route path="/confirm" element={<Confirm />} />
             </Route>
 
-            <Route path="*" element={<NotFound />} /> 
+            <Route path="*" element={<NotFound />} />
+            
         </Routes>
     )
 }
