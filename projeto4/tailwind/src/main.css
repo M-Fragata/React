@@ -21,3 +21,16 @@ select {
     background-position: right 0.7rem top 50%;
     background-size: 1.25rem auto;
 }
+
+::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+    background-color: #e4ece946;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+    background-color: #e4ece9;
+}

@@ -1,7 +1,18 @@
 import { useState } from "react"
 import { Input } from "../components/Input"
 import { Button } from "../components/Button"
+import { RefundItem } from "../components/RefundItem.tsx"
+import { CATEGORIES } from "../utils/categories.ts"
 import searchSVG from "../assets/search.svg"
+
+
+const REFUND_EXAMPLE = {
+    id: "01",
+    username: "Matheus",
+    category: "transport",
+    amount: "24,30",
+    categoryImg: CATEGORIES.transport.icon
+}
 
 export function Dashboard() {
 
@@ -39,6 +50,24 @@ export function Dashboard() {
                 />
 
             </form>
+
+            <div className="mt-6 flex flex-col gap-4 max-h-[342px] overflow-y-scroll">
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+                <RefundItem data={REFUND_EXAMPLE}/>
+            </div>
 
         </div>
     )
